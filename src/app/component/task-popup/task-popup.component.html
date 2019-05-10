@@ -1,0 +1,41 @@
+
+  <mat-toolbar>Add Task
+    <mat-icon style="margin-left: 70%;color: rgb(209, 35, 35);cursor: pointer;" (click)="onClose()" matTooltip="close">close</mat-icon>
+  </mat-toolbar> 
+  <mat-divider></mat-divider><br>
+  <form [formGroup]="addTaskForm" (ngSubmit)="onSubmit(addTaskForm.value)" >
+    <input type="hidden" formControlName="id">
+    <mat-form-field >
+      <input matInput formControlName="projectsName"  placeholder="project name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="moduleName" placeholder="task name">
+    </mat-form-field>
+    <mat-form-field style="width: 49%">
+      <mat-select formControlName="employeeName" placeholder="person" >
+        <mat-option  *ngFor="let employee of employees" [value]="employee.name">{{employee.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field style="width: 49%;margin-left:5px">
+      <mat-select formControlName="status" placeholder="status">
+        <mat-option *ngFor="let status of statusList" [value]="status.name">{{status.name}}</mat-option>
+      </mat-select> 
+    </mat-form-field>
+    <mat-form-field style="width: 49%">
+      <input matInput formControlName="date" [matDatepicker]="pickers" placeholder="date">
+      <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
+      <mat-datepicker #pickers></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field style="width: 49%;;margin-left:5px">
+      <input matInput formControlName="estimatedEndDate" [matDatepicker]="picker" placeholder="timeline">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="note" placeholder="comment">
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary" [disabled]="addTaskForm.invalid">ADD
+    </button>&nbsp;
+    <button mat-raised-button color="warn" (click)="onClear()">CLEAR</button>
+  </form> 
+

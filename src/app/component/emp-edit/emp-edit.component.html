@@ -1,0 +1,32 @@
+<div class="form">
+    <mat-toolbar>
+    <mat-icon style="margin-left: 60%;color: rgb(209, 35, 35);cursor: pointer;" (click)="onClose()">close</mat-icon>
+    </mat-toolbar>
+    <mat-divider></mat-divider><br>
+    <form [formGroup]="editEmployeeForm" (ngSubmit)="onSubmit(editEmployeeForm.value)">
+      <input type="hidden" formControlName="id">
+      <mat-form-field style="width: 49%">
+        <input matInput formControlName="name" placeholder="name">
+      </mat-form-field>
+      <mat-form-field style="width: 49%;margin-left:5px">
+        <input type="number" matInput formControlName="mobileNo" placeholder="mo.no." required>
+      </mat-form-field>
+      <mat-form-field style="width: 49%">
+        <input type="email" matInput formControlName="email" placeholder="e-mail" required>
+      </mat-form-field>
+      <mat-form-field style="width: 49%;margin-left:5px">
+        <input matInput formControlName="userName" placeholder="username">
+      </mat-form-field>
+      <mat-form-field style="width: 49%">
+        <input matInput formControlName="password" placeholder="password">
+      </mat-form-field>
+      <mat-form-field style="width: 49%;margin-left:5px">
+        <input matInput formControlName="confirmPassword" placeholder="confirm password">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="position" placeholder="position">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary" [disabled]="editEmployeeForm.invalid">UPDATE</button>&nbsp;
+      <button mat-raised-button color="warn" (click)="onClear()">CLEAR</button>
+    </form>
+</div>

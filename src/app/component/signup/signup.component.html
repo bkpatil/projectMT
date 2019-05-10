@@ -1,0 +1,31 @@
+<div class="container">
+  <mat-card style="box-shadow : 6.1px 11.1px 80px 1px rgb(168, 167, 166)">
+  <br>
+  <mat-card-title style="color: rgb(88, 80, 80)">PROJECT MANAGEMENT TOOL</mat-card-title>
+  <br>
+  <mat-divider></mat-divider>
+  <!-- <mat-spinner></mat-spinner> -->
+  <form [formGroup]="signupForm" (ngSubmit)="onSignup(signupForm.value)">
+    <mat-form-field>
+      <input matInput formControlName="userName" placeholder="username" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="email" formControlName="email" placeholder="email" required email>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" formControlName="password" placeholder="password" required>
+      <!-- <mat-error *ngIf="passwordInput.invalid">please enter a valid password</mat-error> -->
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" formControlName="confirmPassword" placeholder="confirmed password" required>
+      <!-- <mat-error *ngIf="passwordInput.invalid">please enter a valid password</mat-error> -->
+    </mat-form-field>
+    <br><br>
+    <button mat-raised-button color="accent" type="submit" style="width: 100%">REGISTER</button>
+    <br><br>
+    <span style="margin-left: 45%; font-size: 15px">
+      <a routerLink="/">Back</a>
+    </span>
+  </form>
+  </mat-card>
+</div>

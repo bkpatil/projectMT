@@ -1,0 +1,68 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar></mat-toolbar>
+    <mat-accordion>
+      <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title style="color: blue">
+            <h4 class="mat-body-2"matBadge="{{projectNameCount}}" matBadgeOverlap="false" matBadgeColor="accent">projects</h4>  
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <table mat-table [dataSource]="projectNameList" style="margin-left:-10%">
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element" (click)="onSelect(element.projectName)" style="cursor: pointer;color:rgb(90, 81, 81);font-size:15px"> {{element.projectName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="demo">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                  <mat-icon></mat-icon>
+                  <mat-icon></mat-icon>
+                </td>
+              </ng-container>
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <mat-icon (click)="editProjectName(element.id)" style="color: rgb(125, 141, 216);cursor:pointer">edit</mat-icon>&nbsp;&nbsp;
+                <mat-icon (click)="deleteProjectName(element.id)" style="color: rgb(221, 132, 126);cursor:pointer">delete_outline</mat-icon>
+              </td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-chip-list>
+          <mat-chip color="accent" (click)="createProject()" selected style="margin-left: 62%;cursor: pointer;position: relative;">
+            <mat-icon>add_circle</mat-icon>New
+          </mat-chip>
+        </mat-chip-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div style="position:fixed; font-size: 20px; margin-left: 1%; color: gray">{{projName.projectsName}}</div>
+      <div style="padding-left: 75%">
+        <button mat-button color="primary" (click)="openEmployeeModal()">Employees</button>
+        <button mat-button (click)="notificationOpen()" matTooltip="notification" style="color: gray">
+          <mat-icon matBadge="{{notificationCount}}" matBadgeColor="accent">notifications_none</mat-icon>
+        </button>
+        <button mat-button (click)="logout()" matTooltip="Logout"><mat-icon color="warn">power_settings_new</mat-icon></button> 
+      </div>
+    </mat-toolbar>
+    <!-- <app-task-popup *ngIf="showName" [projName]="projName"></app-task-popup> -->
+    <app-list [fields]="projectsDetails" [projName]="projName"></app-list>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

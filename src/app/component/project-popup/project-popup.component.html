@@ -1,0 +1,11 @@
+<div class="container" style="padding-left: 8%">
+  <form [formGroup]="projectForm" (ngSubmit)="onSubmit(projectForm.value)">
+    <input type="hidden" formControlName="id">
+    <mat-form-field>
+      <input matInput formControlName="projectName" placeholder="project name">
+    </mat-form-field>&nbsp;
+    <button mat-raised-button color="primary" type="submit" [disabled]="projectForm.invalid">
+       {{projectForm.controls['id'].value? 'Update':'Add'}}
+    </button>
+  </form>
+</div>

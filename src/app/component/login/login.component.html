@@ -1,0 +1,35 @@
+<div class="container">
+  <mat-card style="box-shadow : 6.1px 11.1px 80px 1px rgb(168, 167, 166)">
+  <br>
+  <mat-card-title style="color: rgb(88, 80, 80)">PROJECT MANAGEMENT TOOL</mat-card-title>
+  <br>
+  <mat-divider></mat-divider>
+  <!-- <mat-spinner></mat-spinner> -->
+  <form>
+    <mat-form-field>
+      <input matInput name="username" [(ngModel)]="userName" placeholder="username" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" name="password" [(ngModel)]="password" placeholder="password" required>
+      <!-- <mat-error *ngIf="passwordInput.invalid">please enter a valid password</mat-error> -->
+    </mat-form-field>
+    <mat-form-field *ngIf="showNew">
+      <input matInput type="password" name="password" [(ngModel)]="confirmPassword" placeholder="confirmed password" required>
+      <!-- <mat-error *ngIf="passwordInput.invalid">please enter a valid password</mat-error> -->
+    </mat-form-field>
+    <br><br>
+    <button mat-raised-button color="primary" (click)="onLogin()" style="width: 100%" *ngIf="!showNew">LOGIN</button>
+    <button mat-flat-button color="accent" type="submit" (click)="onReset()" style="width: 100%" *ngIf="showNew">RESET</button>
+    <br><br>
+    <span class="forgot" *ngIf="!showNew" (click)="showNew = true">
+      <a href="#">Forgot password?</a><br>
+    </span>
+    <span class="back" *ngIf="showNew" style="margin-left: 45%; font-size: 15px">
+      <a href="#" *ngIf="showNew" (click)="showNew = false">Back</a><br>
+    </span><br>
+    <span style="margin-left: 13%; font-size: 15px">Not registered?
+      <a routerLink="/signup">Create an account</a> 
+    </span>
+  </form>
+  </mat-card>
+</div>

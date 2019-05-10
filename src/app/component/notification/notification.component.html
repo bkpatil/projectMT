@@ -1,0 +1,47 @@
+<mat-dialog-content>
+  <table>
+  <th style="text-align: left">
+    <h3 class="mat-h2">Notifications</h3>
+  </th>
+  <th style="text-align: right">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="search...">
+    </mat-form-field>
+  </th>
+  <th style="text-align:right;cursor: pointer;">
+    <mat-icon (click)="onClose()"  color="warn" >close</mat-icon>
+  </th>
+</table>
+<div>
+ <table mat-table [dataSource]="notificationList" matSort>
+    <ng-container matColumnDef="projectName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="border-radius: 5px"> Project </th>
+      <td mat-cell *matCellDef="let project" style="border-left: 4px solid rgb(211, 75, 204); width: 15%; border-radius: 5px"> {{project.projectName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="moduleName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Task </th>
+      <td mat-cell *matCellDef="let project" style="width: 40%">{{project.moduleName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="employeeName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Person </th>
+      <td mat-cell *matCellDef="let project"> 
+        <mat-chip-list>
+          <mat-chip color="accent" selected style="width: 60%;text-align:center">{{project.employeeName}}</mat-chip>
+        </mat-chip-list>  
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="dueTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Over Due Time </th>
+      <td mat-cell *matCellDef="let project"> {{project.dueTime}} </td>
+    </ng-container>
+    <ng-container matColumnDef="dueDays">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Over Due Days </th>
+      <td mat-cell *matCellDef="let project" style="border-right: 4px solid rgb(211, 75, 204);border-radius: 5px">
+        <button mat-mini-fab>{{project.dueDays}}</button>
+      </td>
+    </ng-container> 
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+ </table>
+</div>
+</mat-dialog-content>
